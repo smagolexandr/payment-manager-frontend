@@ -38,10 +38,10 @@ class Registration extends React.Component {
 
     this.setState({ submitted: true });
     const { user } = this.state;
-    const { dispatch } = this.props;
-    if (user.firstName && user.lastName && user.username && user.password) {
-      dispatch(connect({}));
-    }
+    // const { dispatch } = this.props;
+    // if (user.firstName && user.lastName && user.username && user.password) {
+    //   dispatch(connect({}));
+    // }
   }
 
   render() {
@@ -92,12 +92,12 @@ class Registration extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { registering } = state.registration;
-  return {
-    registering
-  };
-}
+// function mapStateToProps(state) {
+//   const { registering } = state.registration;
+//   return {
+//     registering
+//   };
+// }
 
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+// const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
 export default Registration;

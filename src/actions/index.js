@@ -1,4 +1,5 @@
 export const CHANGE_STATE_PROP = '_CHANGE_STATE_PROP'
+export const CHANGE_CURRENT_USER = 'CHANGE_CURRENT_USER'
 
 export function changeStateProp (prop, value, reducer) {
   return dispatch => {
@@ -8,6 +9,16 @@ export function changeStateProp (prop, value, reducer) {
         prop: prop,
         value: value
       }
+    })
+  }
+}
+
+export function changeCurrentUser (user) {
+  console.log(user)
+  return dispatch => {
+    dispatch({
+      type: CHANGE_CURRENT_USER,
+      user
     })
   }
 }
