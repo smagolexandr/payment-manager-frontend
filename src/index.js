@@ -15,6 +15,7 @@ import thunk from 'redux-thunk'
 import reducers from './reducers/index'
 import Login from "./components/Auth/LoginContainer";
 import Registration from "./components/Auth/Registration";
+import CategoryForm from './components/Category/CategoryContainer'
 
 export const store = createStore(
   reducers,
@@ -32,6 +33,7 @@ ReactDOM.render(
           <Route path="/" component={App} />
           <Route path="/login" component={Login} />
           <Route path="/registration" component={Registration} />
+          <Route path="/category/new" component={CategoryForm} />
         </div>
       </Router>
     </Provider>

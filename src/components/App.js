@@ -20,6 +20,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <Link className='list' to={`/login`}>Login</Link>
           <Link className='list' to={`/registration`}>Registration</Link>
+          <Link className='list' to={'/category/new'}>New Category</Link>
         </div>
 
         {/*<div className={'my-pretty-chart-container'}>*/}
