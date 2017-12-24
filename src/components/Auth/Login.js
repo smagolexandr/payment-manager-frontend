@@ -20,7 +20,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     if (this.state.username !== '' && this.state.password !== '') {
-      fetch('http://localhost:3000/login', {
+      fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
