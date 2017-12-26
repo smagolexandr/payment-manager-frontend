@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import CategoryForm from './CategoryForm'
+import Categories from './Categories'
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,8 +10,12 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const CategoryContainer = connect(
+export const CategoriesContainer = connect(
+  mapStateToProps,
+)(Categories)
+
+export const CategoryFormContainer = connect(
   mapStateToProps,
 )(CategoryForm)
 
-export default CategoryContainer
+

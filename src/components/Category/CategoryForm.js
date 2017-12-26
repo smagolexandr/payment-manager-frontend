@@ -19,20 +19,19 @@ class CategoryForm extends Component {
   handleSubmit(event) {
     if (this.state.username !== '' && this.state.password !== '') {
       console.log(this.props.user)
-      fetch('http://localhost:3000/category', {
+      fetch('http://localhost:8080/category', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          'X-AUTH-TOKEN': this.props.user.token
         },
         body: JSON.stringify({
-          title: this.state.title,
-          user: this.props.user
+          title: this.state.title
         }),
       }).then(response => response.json())
         .then(responseJson => {
-          console.log(responseJson)
-          return responseJson
+          this.props.history.push("/login")
         })
         .catch(error => {
           console.error(error);
@@ -43,14 +42,21 @@ class CategoryForm extends Component {
 
   render () {
     return (
-      <div className="login">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Title:
-            <input type="text" name='title' value={this.state.title} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col col-md-6 text-center">
+            <h1>New Category</h1>
+            <form className="form-signin" name="form" onSubmit={this.handleSubmit}>
+              <div className="form_group">
+                <label>
+                  Title
+                </label>
+                <input type="text" className="form-control" name='title' value={this.state.title} onChange={this.handleChange} />
+              </div>
+              <button type="submit" className="btn btn-success">Save</button>
+            </form>
+          </div>
+        </div>
       </div>
     )
   }

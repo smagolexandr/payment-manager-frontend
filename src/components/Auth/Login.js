@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault()
     if (this.state.username !== '' && this.state.password !== '') {
       fetch('http://localhost:8080/login', {
         method: 'POST',
@@ -33,29 +34,40 @@ class Login extends Component {
       }).then(response => response.json())
         .then(responseJson => {
           this.props.changeCurrentUser(responseJson.user)
-          return responseJson.user
+          this.props.history.push("/home")
         })
         .catch(error => {
           console.error(error);
         });
     }
-    event.preventDefault()
+
   }
 
   render () {
     return (
-      <div className="login">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username:
-            <input type="text" name={'username'} value={this.state.username} onChange={this.handleChange} />
-          </label>
-          <label>
-            Password:
-            <input type="password" name={'password'} value={this.state.password} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col col-md-6 text-center">
+            <form className="form-signin" onSubmit={this.handleSubmit} method="post">
+              <h1>Sign In</h1>
+
+              <div className="form-group">
+                <label>Username</label>
+                <input type="text" id="username" className="form-control"
+                       name="username" value={this.state.username} onChange={this.handleChange}/>
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input type="password" id="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} />
+              </div>
+
+              <Link className='btn btn-success' to={`/home`}><i className="fa fa-btn fa-home"></i> Home</Link>
+              <Link className='btn btn-success' to={`/registration`}><i className="fa fa-btn fa-user"></i> Registration</Link>
+
+              <button type="submit" className="btn btn-success"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</button>
+            </form>
+          </div>
+        </div>
       </div>
     )
   }
